@@ -21,7 +21,7 @@ function App() {
   }
 
   const getUsers = async () => {
-    const response = await axios.get("https://recipes-api-1.herokuapp.com/api/auth/users", {
+    const response = await axios.get("https://recipes-api-1.herokuapp.com/api/auth", {
       headers: {
         Authorization: localStorage.tokenDashboardRecipes,
       },
