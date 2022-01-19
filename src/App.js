@@ -5,10 +5,10 @@ import { useEffect, useState } from "react"
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
 import Sidebar from "./components/Sidebar"
-import Recipes  from "./pages/Recipe"
+import Recipes from "./pages/Recipe"
 import RecipesContext from "./utils/RecipesContext"
 import Login from "./pages/Login"
-import Users from "./pages/Users" 
+import Users from "./pages/Users"
 
 function App() {
   const [recipes, setRecips] = useState([])
@@ -16,12 +16,12 @@ function App() {
   const navigate = useNavigate()
 
   const getRecipes = async () => {
-    const response = await axios.get("http://localhost:5000/api/recipes")
+    const response = await axios.get("https://recipes-api-1.herokuapp.com/api/recipes")
     setRecips(response.data)
   }
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/api/auth/users", {
+    const response = await axios.get("https://recipes-api-1.herokuapp.com/api/auth/users", {
       headers: {
         Authorization: localStorage.tokenDashboardRecipes,
       },
@@ -33,10 +33,10 @@ function App() {
     getRecipes()
     getUsers()
   }, [])
-// ---------delet recipe
+  // ---------delet recipe
   const deleteRecipe = async recipeId => {
     try {
-      await axios.delete(`http://localhost:5000/api/recipes/${recipeId}`, {
+      await axios.delete(`https://recipes-api-1.herokuapp.com/api/recipes/${recipeId}`, {
         headers: {
           Authorization: localStorage.tokenDashboardRecipes,
         },
@@ -48,7 +48,7 @@ function App() {
       else console.log(error)
     }
   }
-// -----------admen
+  // -----------admen
   const login = async e => {
     e.preventDefault()
     try {
@@ -57,7 +57,7 @@ function App() {
         email: form.elements.email.value,
         password: form.elements.password.value,
       }
-      const response = await axios.post("http://localhost:5000/api/auth/login/admin", adminBody)
+      const response = await axios.post("https://recipes-api-1.herokuapp.com/api/auth/login/admin", adminBody)
       localStorage.tokenDashboardRecipes = response.data
       toast.success("login success")
       navigate("/recipes")
@@ -71,7 +71,7 @@ function App() {
     e.preventDefault()
     try {
       const form = e.target
-     
+
       const recipeBody = {
         title: form.elements.title.value,
         photo: form.elements.photo.value,
@@ -79,8 +79,8 @@ function App() {
         calories: form.elements.calories.value,
         types: form.elements.types.value,
       }
-    
-      await axios.put(`http://localhost:5000/api/recipes/${recipeId}`, recipeBody, {
+
+      await axios.put(`https://recipes-api-1.herokuapp.com/api/recipes/${recipeId}`, recipeBody, {
         headers: {
           Authorization: localStorage.tokenDashboardRecipes,
         },
@@ -92,7 +92,7 @@ function App() {
       else console.log(error)
     }
   }
-// --------add recipe-----
+  // --------add recipe-----
   const addRecipe = async e => {
     e.preventDefault()
     try {
@@ -105,7 +105,7 @@ function App() {
         calories: form.elements.calories.value,
         types: form.elements.types.value,
       }
-      await axios.post(`http://localhost:5000/api/recipes`, recipeBody, {
+      await axios.post(`https://recipes-api-1.herokuapp.com/api/recipes`, recipeBody, {
         headers: {
           Authorization: localStorage.tokenDashboardRecipes,
         },
@@ -122,7 +122,7 @@ function App() {
   const logout = () => {
     localStorage.removeItem("tokenDashboardRecipes")
   }
-// -----------add admin--------
+  // -----------add admin--------
   const addAdmin = async e => {
     e.preventDefault()
     try {
@@ -136,7 +136,7 @@ function App() {
         avatar: form.elements.avatar.value,
       }
 
-      await axios.post(`http://localhost:5000/api/auth/add-admin`, adminBody, {
+      await axios.post(`https://recipes-api-1.herokuapp.com/api/auth/add-admin`, adminBody, {
         headers: {
           Authorization: localStorage.tokenDashboardRecipes,
         },
@@ -148,10 +148,10 @@ function App() {
       else console.log(error)
     }
   }
-// -------delete user-------
+  // -------delete user-------
   const deleteUser = async userId => {
     try {
-      await axios.delete(`http://localhost:5000/api/auth/users/${userId}`, {
+      await axios.delete(`https://recipes-api-1.herokuapp.com/api/auth/users/${userId}`, {
         headers: {
           Authorization: localStorage.tokenDashboardRecipes,
         },
@@ -163,7 +163,6 @@ function App() {
       else console.log(error)
     }
   }
- 
 
   const store = {
     recipes,
