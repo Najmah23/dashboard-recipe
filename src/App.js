@@ -182,7 +182,6 @@ function App() {
       <CssBaseline />
       <Box sx={{ display: "flex" }}>
         <Sidebar />
-
         <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}>
           <Routes>
             <Route
