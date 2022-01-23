@@ -41,7 +41,7 @@ function RecipeEditModal(props) {
               Steps
             </Form.Label>
             <Col md="8">
-              <Form.Control as="textarea" name="steps" defaultValue={recipe.steps}  />
+              <Form.Control as="textarea" name="steps" defaultValue={recipe.steps} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
@@ -49,7 +49,13 @@ function RecipeEditModal(props) {
               Types
             </Form.Label>
             <Col md="8">
-              <Form.Control type="text" name="types" defaultValue={recipe.types} required />
+              <Form.Select name="types" defaultValue={recipe.types}>
+                <option>Open this select type </option>
+                <option value="Breakfast">breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Snack">Snack</option>
+                <option value="Dinner">Dinner</option>
+              </Form.Select>
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">

@@ -20,10 +20,25 @@ function RecipeViewModal(props) {
             <img src={recipe.photo} style={{ objectFit: "contain", height: "200px", width: "100%" }} />
           </ListGroup.Item>
           <ListGroup.Item>
-            <strong>Ingredients:</strong> {recipe.ingredients}
+            <strong>Ingredients:</strong>{" "}
+            <ul style={{ listStyle: "circle" }}>
+              {recipe.ingredients
+                .split("*")
+                .slice(1)
+                .map(ingredient => (
+                  <li>{ingredient}</li>
+                ))}
+            </ul>
           </ListGroup.Item>
           <ListGroup.Item>
-            <strong>Steps:</strong> {recipe.steps}
+            <strong>Steps:</strong>  <ul style={{ listStyle: "auto" }}>
+                      {recipe.steps
+                        .split("*")
+                        .slice(1)
+                        .map(step => (
+                          <li>{step}</li>
+                        ))}
+                    </ul>
           </ListGroup.Item>
           <ListGroup.Item>
             <strong>Calories:</strong> {recipe.calories}
