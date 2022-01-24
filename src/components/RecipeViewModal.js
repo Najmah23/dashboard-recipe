@@ -32,8 +32,8 @@ function RecipeViewModal(props) {
           </ListGroup.Item>
           <ListGroup.Item>
             <strong>Steps:</strong>  <ul style={{ listStyle: "auto" }}>
-                      {recipe.steps
-                        .split("*")
+                      {recipe.steps?.split("*")
+                        
                         .slice(1)
                         .map(step => (
                           <li>{step}</li>
